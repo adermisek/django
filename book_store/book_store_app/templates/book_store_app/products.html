@@ -1,0 +1,43 @@
+{% extends "book_store_app/base.html" %}
+{% block title %}Sve knjige{% endblock %}
+
+{% block content %}
+    <h1 class="text-primary">All Products</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>${{ product.price }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{% if product.is_available %}Available{% else %}Out of Stock{% endif %}</td>
+                    <td>{{ product.total_price }}</td>
+                    <td>
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-warning btn-sm">Uredi</a>
+
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No products available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="text-success">Maksimalna cijena: {{ max_price.price__max }}</h2>
+    <h2 class="text-danger">Minimalna cijena: {{ min_price.price__min }}</h2>
+    <h2>Ukupno proizvoda: {{ products_count.id__count }}</h2>
+    <h2 class="text-primary">Suma dostupnih proizvoda: {{ total_price_available }}</h2>
+{% endblock %}
