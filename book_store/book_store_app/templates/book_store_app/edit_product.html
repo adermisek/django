@@ -1,0 +1,17 @@
+{% extends "book_store_app/base.html" %}
+{% block title %}Uredi proizvod{% endblock %}
+
+{% block content %}
+    <div class="card shadow p-4">
+        <h1 class="text-primary">Uredi proizvod: {{ product.name }}</h1>
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Spremi promjene</button>
+            <a href="{% url 'products' %}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Povratak</a>
+
+        </form>
+    </div>
+{% endblock %}
