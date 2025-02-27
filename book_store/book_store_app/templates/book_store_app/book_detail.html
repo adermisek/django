@@ -1,0 +1,17 @@
+
+
+{% extends "book_store_app/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="card shadow p-4">
+        <h1 class="text-primary">{{ title }}</h1>
+        <h2 class="text-secondary">{{ author }}</h2>
+        <p class="text-muted">Knjiga je objavljena {{ year }}</p>
+        {% if is_bestseller %}
+            <span class="badge bg-success">Bestseller</span>
+        {% else %}
+            <span class="badge bg-danger">Nije Bestseller</span>
+        {% endif %}
+    </div>
+{% endblock %}
