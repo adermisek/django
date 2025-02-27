@@ -1,0 +1,13 @@
+{% extends "book_store_app/base.html" %}
+{% block title %}Sve knjige{% endblock %}
+
+{% block content %}
+    <h2 class="text-primary">Najstarija knjiga je {{ min_year }}</h2>
+    <ul class="list-group">
+        {% for book in books %}
+            <li class="list-group-item">
+                <a href="{% url 'book-detail' book.slug %}" class="text-decoration-none">{{ book.title }}</a> ({{ book.year }})
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
